@@ -15,32 +15,35 @@
             background-color: #2d2d2d;
             font-family: 'Courier New', monospace;
             color: #00ff00;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .terminal-section {
-            padding: 40px;
+            padding: 100px 20px;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .prompt {
             color: #4a9eff;
-            font-size: 30px;
+            font-size: clamp(20px, 5vw, 30px);
             margin-right: 15px;
             font-weight: bold;
+            flex-shrink: 0;
         }
 
         .text {
             color: #ffffff;
-            font-size: 24px;
+            font-size: clamp(16px, 4vw, 24px);
+            word-break: break-word;
         }
 
         .input-section {
-            padding: 40px;
+            padding: 20px;
             display: flex;
             align-items: center;
             flex: 1;
@@ -58,9 +61,11 @@
             outline: none;
             color: #ffffff;
             font-family: 'Courier New', monospace;
-            font-size: 24px;
+            font-size: clamp(16px, 4vw, 24px);
+            max-width: 100dvh;
             flex: 1;
             caret-color: #00ff00;
+            min-width: 0;
         }
 
         input::placeholder {
@@ -87,14 +92,47 @@
 
         .message {
             color: #4a9eff;
-            font-size: 16px;
-            padding: 20px 40px;
+            font-size: clamp(14px, 3vw, 16px);
+            padding: 20px;
             opacity: 0;
             transition: opacity 0.3s;
+            word-break: break-word;
         }
 
         .message.show {
             opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .terminal-section {
+                padding: 100px 15px;
+            }
+
+            .input-section {
+                padding: 15px;
+            }
+
+            .prompt {
+                margin-right: 10px;
+            }
+
+            .message {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .terminal-section {
+                padding: 200px 50px;
+            }
+
+            .input-section {
+                padding: 100px 50px;
+            }
+
+            .message {
+                padding: 100px 50px;
+            }
         }
     </style>
 </head>
@@ -110,7 +148,7 @@
             <input 
                 type="text" 
                 id="terminalInput" 
-                placeholder="Escribe algo y presiona Enter..."
+                placeholder="Escribe aqui..."
                 autofocus
             />
         </div>
@@ -125,7 +163,7 @@
         const message = document.getElementById('message');
         
         // Reemplaza esta URL con la de tu canal de YouTube
-        const YOUTUBE_CHANNEL = 'https://www.youtube.com/@dylanstillavato?sub_confirmation=1';
+        const YOUTUBE_CHANNEL = 'https://www.youtube.com/@dylanstillavato';
 
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -149,5 +187,3 @@
     </script>
 </body>
 </html>
-
-
