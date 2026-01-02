@@ -165,7 +165,7 @@
         const message = document.getElementById('message');
         
         // Reemplaza esta URL con la de tu canal de YouTube
-        const YOUTUBE_CHANNEL = 'https://www.youtube.com/@dylanstillavato';
+        const YOUTUBE_CHANNEL = 'https://www.youtube.com/@dylanstillavato?sub_confirmation=1';
 
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -181,12 +181,19 @@
                 }
             }
         });
-
-        // Mantener el foco en el input
-        document.addEventListener('click', function() {
+        // Autofocus solo en escritorio (pantallas mayores a 768px)
+        if (window.innerWidth > 768) {
             input.focus();
+        }
+
+        // Mantener el foco en el input solo en escritorio
+        document.addEventListener('click', function() {
+            if (window.innerWidth > 768) {
+                input.focus();
+            }
         });
     </script>
 </body>
 </html>
+
 
