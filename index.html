@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2d2d2d;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .terminal-section {
+            padding: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: #4a9eff;
+            font-size: 30px;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .text {
+            color: #ffffff;
+            font-size: 24px;
+        }
+
+        .input-section {
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            flex: 1;
+            caret-color: #00ff00;
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 12px;
+            height: 28px;
+            background-color: #00ff00;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+
+        .message {
+            color: #4a9eff;
+            font-size: 16px;
+            padding: 20px 40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-section">
+        <span class="prompt">&gt;</span>
+        <span class="text">Inserta aquí tus deseos para 2026...</span>
+    </div>
+
+    <div class="input-section">
+        <span class="prompt">&gt;</span>
+        <div class="input-container">
+            <input 
+                type="text" 
+                id="terminalInput" 
+                placeholder="Escribe algo y presiona Enter..."
+                autofocus
+            />
+        </div>
+    </div>
+
+    <div class="message" id="message">
+        Redirigiendo a YouTube...
+    </div>
+
+    <script>
+        const input = document.getElementById('terminalInput');
+        const message = document.getElementById('message');
+        
+        // Reemplaza esta URL con la de tu canal de YouTube
+        const YOUTUBE_CHANNEL = 'https://www.youtube.com/@dylanstillavato';
+
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const userInput = input.value.trim();
+                
+                if (userInput) {
+                    message.classList.add('show');
+                    input.disabled = true;
+                    
+                    setTimeout(() => {
+                        window.location.href = YOUTUBE_CHANNEL;
+                    }, 1000);
+                }
+            }
+        });
+
+        // Mantener el foco en el input
+        document.addEventListener('click', function() {
+            input.focus();
+        });
+    </script>
+</body>
+</html>
